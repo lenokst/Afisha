@@ -1,28 +1,33 @@
 package ru.netology.manager;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.netology.domain.PurchaseItem;
+import ru.netology.repository.AfishaRepository;
 
-public class Manager {
-    private PurchaseItem[] items = new PurchaseItem[0];
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AfishaManager {
+    private AfishaRepository repository;
     private int countFilms = 10;
 
-    public Manager() {
-    }
-
-    public Manager(int countFilms) {
+    public AfishaManager(int countFilms) {
         this.countFilms = countFilms;
     }
 
+    public AfishaManager(AfishaRepository repository) {
+        this.repository = repository;
+    }
+
     public void addFilm(PurchaseItem item) {
-        int length = items.length + 1;
-        PurchaseItem[] tmp = new PurchaseItem[length];
-        System.arraycopy(items, 0, tmp, 0, items.length);
-        int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = item;
-        items = tmp;
+        repository.save(item);
     }
 
     public PurchaseItem[] getFilm() {
+        PurchaseItem[] items = repository.findAll();
         if (items.length < countFilms) {
             countFilms = items.length;
         }
