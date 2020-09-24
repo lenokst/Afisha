@@ -3,7 +3,7 @@ package ru.netology.manager;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.netology.domain.PurchaseItem;
+import ru.netology.domain.Film;
 import ru.netology.repository.AfishaRepository;
 
 
@@ -22,16 +22,16 @@ public class AfishaManager {
         this.repository = repository;
     }
 
-    public void addFilm(PurchaseItem item) {
+    public void addFilm(Film item) {
         repository.save(item);
     }
 
-    public PurchaseItem[] getFilm() {
-        PurchaseItem[] items = repository.findAll();
+    public Film[] getFilm() {
+        Film[] items = repository.findAll();
         if (items.length < countFilms) {
             countFilms = items.length;
         }
-        PurchaseItem[] result = new PurchaseItem[countFilms];
+        Film[] result = new Film[countFilms];
         for (int i = 0; i < countFilms; i++) {
             int index = items.length - i - 1;
             result[i] = items[index];

@@ -1,28 +1,28 @@
 package ru.netology.repository;
 
-import ru.netology.domain.PurchaseItem;
+import ru.netology.domain.Film;
 
 public class AfishaRepository {
-    private PurchaseItem[] items = new PurchaseItem[0];
+    private Film[] items = new Film[0];
 
-    public void save(PurchaseItem item) {
+    public void save(Film item) {
         int length = items.length + 1;
-        PurchaseItem[] tmp = new PurchaseItem[length];
+        Film[] tmp = new Film[length];
         System.arraycopy(items, 0, tmp, 0, items.length);
         int lastIndex = tmp.length - 1;
         tmp[lastIndex] = item;
         items = tmp;
     }
 
-    public PurchaseItem[] findAll() {
+    public Film[] findAll() {
         return items;
     }
 
     public void removeById(int id) {
         int length = items.length - 1;
-        PurchaseItem[] tmp = new PurchaseItem[length];
+        Film[] tmp = new Film[length];
         int index = 0;
-        for (PurchaseItem item : items) {
+        for (Film item : items) {
             if (item.getId() != id) {
                 tmp[index] = item;
                 index++;
@@ -31,8 +31,8 @@ public class AfishaRepository {
         items = tmp;
     }
 
-    public PurchaseItem findById(int id) {
-        for (PurchaseItem item : items) {
+    public Film findById(int id) {
+        for (Film item : items) {
             if (item.getId() == id) {
                 return item;
             }
@@ -41,6 +41,6 @@ public class AfishaRepository {
     }
 
     public void removeAll() {
-        items = new PurchaseItem[0];
+        items = new Film[0];
     }
 }
