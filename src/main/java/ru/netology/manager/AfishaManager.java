@@ -26,7 +26,7 @@ public class AfishaManager {
         repository.save(item);
     }
 
-    public Film[] getFilm() {
+    public Film[] getFilms() {
         Film[] items = repository.findAll();
         if (items.length < countFilms) {
             countFilms = items.length;
