@@ -40,7 +40,7 @@ public class AfishaManagerTest {
         doNothing().when(repository).save(thirteenth);
 
         manager.addFilm(thirteenth);
-        Film[] actual = manager.getFilm();
+        Film[] actual = manager.getFilms();
         Film[] expected = new Film[]{thirteenth, twelveth, eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth};
         assertArrayEquals(expected, actual);
         verify(repository).findAll();
@@ -51,7 +51,7 @@ public class AfishaManagerTest {
         Film[] returned = new Film[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelveth};
         doReturn(returned).when(repository).findAll();
 
-        Film[] actual = manager.getFilm();
+        Film[] actual = manager.getFilms();
         Film[] expected = new Film[]{twelveth, eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third};
         assertArrayEquals(expected, actual);
         verify(repository).findAll();
@@ -64,7 +64,7 @@ public class AfishaManagerTest {
 
         AfishaManager manager = new AfishaManager(repository,5);
 
-        Film[] actual = manager.getFilm();
+        Film[] actual = manager.getFilms();
         Film[] expected = new Film[]{seventh, sixth, fifth, fourth, third};
         assertArrayEquals(expected, actual);
         verify(repository).findAll();
@@ -77,7 +77,7 @@ public class AfishaManagerTest {
 
         AfishaManager manager = new AfishaManager(repository,11);
 
-        Film[] actual = manager.getFilm();
+        Film[] actual = manager.getFilms();
         Film[] expected = new Film[]{twelveth, eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
         assertArrayEquals(expected, actual);
         verify(repository).findAll();
@@ -90,7 +90,7 @@ public class AfishaManagerTest {
 
         AfishaManager manager = new AfishaManager(repository, 0);
 
-        Film[] actual = manager.getFilm();
+        Film[] actual = manager.getFilms();
         Film[] expected = new Film[]{};
         assertArrayEquals(expected, actual);
         verify(repository).findAll();
@@ -101,7 +101,7 @@ public class AfishaManagerTest {
         Film[] returned = new Film[]{first, second, third, fourth, fifth, sixth, seventh};
         doReturn(returned).when(repository).findAll();
 
-        Film[] actual = manager.getFilm();
+        Film[] actual = manager.getFilms();
         Film[] expected = new Film[]{seventh, sixth, fifth, fourth, third, second, first};
         assertArrayEquals(expected, actual);
         verify(repository).findAll();
