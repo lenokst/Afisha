@@ -1,10 +1,10 @@
 package ru.netology.manager;
 
-import ru.netology.domain.PurchaseItem;
+import ru.netology.domain.Film;
 
 public class Manager {
-    private PurchaseItem[] items = new PurchaseItem[0];
-    private int countFilms = 10;
+    private Film[] items = new Film[0];
+    private int countFilms;
 
     public Manager() {
     }
@@ -13,20 +13,24 @@ public class Manager {
         this.countFilms = countFilms;
     }
 
-    public void addFilm(PurchaseItem item) {
+    public void addFilm(Film item) {
         int length = items.length + 1;
-        PurchaseItem[] tmp = new PurchaseItem[length];
+        Film[] tmp = new Film[length];
         System.arraycopy(items, 0, tmp, 0, items.length);
         int lastIndex = tmp.length - 1;
         tmp[lastIndex] = item;
         items = tmp;
     }
 
-    public PurchaseItem[] getFilm() {
-        if (items.length < countFilms) {
-            countFilms = items.length;
+    public Film[] getFilms() {
+        int length = countFilms;
+        if (countFilms < 0) {
+            length = 0;
         }
-        PurchaseItem[] result = new PurchaseItem[countFilms];
+        if (length > countFilms) {
+            countFilms = length;
+        }
+        Film[] result = new Film[countFilms];
         for (int i = 0; i < countFilms; i++) {
             int index = items.length - i - 1;
             result[i] = items[index];
